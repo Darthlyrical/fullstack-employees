@@ -2,4 +2,24 @@ import express from "express";
 const app = express();
 export default app;
 
-// TODO: this file!
+app.use(express.json());
+
+app.use((req,res,next)=>{
+    const start = Date.now();
+
+    res.on('finish', () =>{
+        const ms = Date.now() - start;
+        console.log(`${req.method} ${req.originalUrl} ${res.statusCode} - ${ms}ms`);
+    });
+    next();
+});
+
+
+//need to create a router
+app.use('/employees',)
+
+
+app.use((err, req, res, next) =>{
+    console.error(err);
+    res.status(500).send('There was an error with your request. Please try again later.')
+})
