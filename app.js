@@ -1,4 +1,5 @@
 import express from "express";
+import employeesRouter from './api/employees.js';
 const app = express();
 export default app;
 
@@ -14,9 +15,13 @@ app.use((req,res,next)=>{
     next();
 });
 
+app.get('/', (req,res)=>{
+    res.send('Welcome to the Fullstack Employees API.');
+})
+
 
 //need to create a router
-app.use('/employees',)
+app.use('/employees', employeesRouter)
 
 
 app.use((err, req, res, next) =>{
